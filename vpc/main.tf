@@ -1,12 +1,16 @@
+
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
+      version = "3.26.0"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
+      version = "3.0.1"
     }
   }
+  required_version = "~> 0.14"
 
   backend "remote" {
     organization = "nitheeshp"
@@ -16,6 +20,12 @@ terraform {
     }
   }
 }
+
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
 
 module "network" {
   source = "terraform-aws-modules/vpc/aws"
