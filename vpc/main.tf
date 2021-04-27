@@ -8,9 +8,9 @@ terraform {
     }
   }
 
-
   backend "remote" {
     organization = "nitheeshp"
+
     workspaces {
       name = "vpc"
     }
