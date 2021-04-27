@@ -1,8 +1,19 @@
 terraform {
-  backend "s3" {
-    bucket = "project-x-s3-terraform-state"
-    key    = "terraformstate/development/terraform.tfstate"
-    region = "ap-south-1"
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
+
+
+  backend "remote" {
+    organization = "nitheeshp"
+    workspaces {
+      name = "vpc"
+    }
   }
 }
 
