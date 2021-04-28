@@ -38,7 +38,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="development"
-          terraform plan -input=false -no-color
+          terraform plan -var-file=environments/develop.tfvars -no-color
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -76,6 +76,6 @@ jobs:
         if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="development"
-          terraform apply -auto-approve  
+          terraform apply -var-file=environments/develop.tfvars -auto-approve  
 
         

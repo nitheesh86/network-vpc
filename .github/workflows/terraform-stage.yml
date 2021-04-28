@@ -76,4 +76,4 @@ jobs:
         if: github.ref == 'refs/heads/stage' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="staging"
-          terraform apply -auto-approve
+          terraform apply -var-file=environments/stage.tfvars -auto-approve
