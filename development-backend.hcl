@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "ap-south-1"
-}
-
 terraform {
   backend "remote" {
     organization = "nitheeshp"
@@ -10,4 +6,8 @@ terraform {
       name = "development"
     }
   }
+}
+
+provider "aws" {
+  region = "ap-south-1"
 }
