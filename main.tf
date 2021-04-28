@@ -25,7 +25,7 @@ module "network" {
 
   tags = {
     Terraform   = "true"
-    Environment = "dev"
+    Environment = "dev1"
   }
 }
 
