@@ -28,7 +28,6 @@ jobs:
         id: init
         run: |
           terraform init -input=false
-          terraform workspace select development
 
       - name: Terraform Plan
         id: plan
