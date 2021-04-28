@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 module "network" {
-  source  = "app.terraform.io/nitheeshp/network/aws"
+  source = "terraform-aws-modules/vpc/aws"
 
   name = var.name
   cidr = var.cidr
@@ -25,7 +25,6 @@ module "network" {
 
   tags = {
     Terraform   = "true"
-    Environment = var.image_id
+    Environment = var.env
   }
 }
-
