@@ -3,10 +3,11 @@ terraform {
     organization = "nitheeshp"
 
     workspaces {
-      prefix = "development"
+      prefix = "-"
     }
   }
 }
+
 provider "aws" {
   region = "ap-south-1"
 }
