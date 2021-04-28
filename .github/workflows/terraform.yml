@@ -27,18 +27,15 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          cd vpc
-          pwd
-          ls
+          export TF_WORKSPACE="development"
           terraform init -input=false
+          terraform workspace show
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          cd vpc
-          pwd
-          ls
+          export TF_WORKSPACE="development"
           terraform plan -input=false -no-color
         continue-on-error: true
 
