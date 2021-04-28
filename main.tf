@@ -3,7 +3,7 @@ terraform {
     organization = "nitheeshp"
 
     workspaces {
-      prefix = "prefix-"
+      prefix = "development-"
     }
   }
 }
