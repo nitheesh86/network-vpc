@@ -1,10 +1,9 @@
 terraform {
+  required_version = "~> 0.12"
   backend "remote" {
-    organization = "nitheeshp"
-
-    workspaces {
-      prefix = "vpc-"
-    }
+    hostname     = "app.terraform.io"
+    organization = "tutorialsnitheeshp"
+    workspaces { prefix = "vpc-" }
   }
 }
 
