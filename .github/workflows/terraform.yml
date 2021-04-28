@@ -27,6 +27,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
+          terraform workspace list
           export TF_WORKSPACE="development"
           terraform init -input=false
 
