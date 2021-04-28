@@ -1,3 +1,17 @@
+terraform {
+  backend "remote" {
+    organization = "nitheeshp"
+
+    workspaces {
+      prefix = "prefix-"
+    }
+  }
+}
+
+provider "aws" {
+  region = "ap-south-1"
+}
+
 module "network" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -15,3 +29,4 @@ module "network" {
     Environment = "dev"
   }
 }
+
