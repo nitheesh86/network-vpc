@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform:
-    name: "Terraform"
+    name: "Deploy-Production-Environment"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
