@@ -25,7 +25,7 @@ module "network" {
 
   tags = {
     Terraform   = "true"
-    Environment = var.env
+    Environment = var.image_id
   }
 }
 
