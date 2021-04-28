@@ -29,6 +29,7 @@ jobs:
         run: |
           export TF_WORKSPACE="development"
           terraform init -input=false
+          terraform workspace show
 
       - name: Terraform Plan
         id: plan
