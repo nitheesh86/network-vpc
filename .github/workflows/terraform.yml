@@ -26,7 +26,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init -input=false
+        run: terraform init -input=false -backend-config=/enviournments/backend.tf
 
       - name: Terraform Plan
         id: plan
