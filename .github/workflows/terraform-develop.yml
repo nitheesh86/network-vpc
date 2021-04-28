@@ -3,7 +3,7 @@ name: "Terraform"
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
 
 jobs:
@@ -71,9 +71,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
         run: |
-          cd vpc
-          pwd
-          ls
+          export TF_WORKSPACE="development"
           terraform apply -auto-approve
