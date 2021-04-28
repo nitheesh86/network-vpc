@@ -1,16 +1,3 @@
-provider "aws" {
-  region = "ap-south-1"
-}
-
-terraform {
-  backend "remote" {
-    organization = "nitheeshp"
-
-    workspaces {
-      name = "vpc"
-    }
-  }
-}
 
 module "network" {
   source = "terraform-aws-modules/vpc/aws"

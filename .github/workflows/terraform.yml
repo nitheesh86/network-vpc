@@ -26,20 +26,12 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: |
-          cd vpc
-          pwd
-          ls
-          terraform init -input=false
+        run: terraform init -input=false -backend-config=enviournments/development-backend.hcl
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: |
-          cd vpc
-          pwd
-          ls
-          terraform plan -input=false -no-color
+        run: terraform plan -input=false -no-color
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
