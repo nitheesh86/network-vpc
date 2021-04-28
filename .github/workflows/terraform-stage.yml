@@ -3,8 +3,10 @@ name: "Terraform"
 on:
   push:
     branches:
-      - stage
+      - prod
   pull_request:
+    branches:
+      - prod
 
 jobs:
   terraform:
