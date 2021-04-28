@@ -72,8 +72,10 @@ jobs:
         if: steps.plan.outcome == 'failure'
         run: exit 1
 
-        - name: Terraform Apply
+      - name: Terraform Apply
           if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
           run: |
             export TF_WORKSPACE="development"
-            terraform apply -auto-approve
+            terraform apply -auto-approve  
+
+        
