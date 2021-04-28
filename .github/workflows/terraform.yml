@@ -35,7 +35,7 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          terraform workspace select development
+          export TF_WORKSPACE="development"
           terraform plan -input=false -no-color
         continue-on-error: true
 
