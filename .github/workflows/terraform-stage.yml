@@ -1,12 +1,12 @@
-name: "Terraform"
+name: "Terraform-Stage"
 
 on:
-  push:
-    branches:
-      - prod
   pull_request:
     branches:
-      - prod
+      - stage
+  push:
+    branches:
+      - stage
 
 jobs:
   terraform:

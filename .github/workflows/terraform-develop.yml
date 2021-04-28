@@ -1,10 +1,10 @@
-name: "Terraform"
+name: "Terraform-Develop"
 
 on:
-  push:
+  pull_request:
     branches:
       - develop
-  pull_request:
+  push:
     branches:
       - develop
 

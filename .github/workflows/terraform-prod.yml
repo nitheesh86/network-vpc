@@ -1,10 +1,10 @@
-name: "Terraform"
+name: "Terraform-Prod"
 
 on:
-  push:
+  pull_request:
     branches:
       - prod
-  pull_request:
+  push:
     branches:
       - prod
 
