@@ -1,10 +1,12 @@
-name: "Terraform"
+name: "Terraform-Prod"
 
 on:
+  pull_request:
+    branches:
+      - prod
   push:
     branches:
-      - main
-  pull_request:
+      - prod
 
 jobs:
   terraform:
@@ -27,7 +29,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="production"
           terraform init -input=false
           terraform workspace show
 
@@ -35,7 +37,7 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="production"
           terraform plan -input=false -no-color
         continue-on-error: true
 
@@ -71,9 +73,8 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
         run: |
-          cd vpc
-          pwd
-          ls
+          export TF_WORKSPACE="production"
           terraform apply -auto-approve
+          
