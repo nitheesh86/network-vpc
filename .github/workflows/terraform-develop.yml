@@ -23,6 +23,7 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
       - name: Terraform Format
+        if: github.event_name == 'pull_request' && github.event.action == 'opened'
         id: fmt
         run: terraform fmt -check
 
@@ -38,7 +39,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="development"
-          terraform plan -var-file=environments/*.auto.tfvars -no-color
+          terraform plan -var-file=environments/terraform.tfvars -no-color
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -76,6 +77,6 @@ jobs:
         if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="development"
-          terraform apply -var-file=environments/*.auto.tfvars -auto-approve  
+          terraform apply -var-file=environments/terraform.tfvars -auto-approve  
 
         
