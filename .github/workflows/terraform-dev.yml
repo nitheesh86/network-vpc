@@ -8,7 +8,7 @@ on:
     branches:
       - dev
 
-      
+
 jobs:
   terraform:
     name: "Deploy-Development-Environment"
@@ -40,7 +40,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
-          terraform plan -var-file="develop.auto.tfvars"
+          terraform plan -var-file="environments/develop.auto.tfvars"
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -78,6 +78,6 @@ jobs:
         if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="dev"
-          terraform apply -var-file="develop.auto.tfvars" -auto-approve  
+          terraform apply -var-file="environments/develop.auto.tfvars" -auto-approve  
 
         
