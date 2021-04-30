@@ -40,7 +40,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
-          terraform plan -var 'env=dev1'
+          terraform plan -input=false
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -78,6 +78,6 @@ jobs:
         if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="dev"
-          terraform apply -var 'env=dev1' -auto-approve  
+          terraform apply -auto-approve  
 
         
