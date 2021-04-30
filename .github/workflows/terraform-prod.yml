@@ -29,7 +29,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          export TF_WORKSPACE="production"
+          export TF_WORKSPACE="prod"
           terraform init -input=false
           terraform workspace show
 
@@ -37,7 +37,7 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          export TF_WORKSPACE="production"
+          export TF_WORKSPACE="prod"
           terraform plan -var-file=environments/prod.auto.tfvars -no-color
         continue-on-error: true
 
@@ -75,6 +75,6 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
         run: |
-          export TF_WORKSPACE="production"
+          export TF_WORKSPACE="prod"
           terraform apply -var-file=environments/prod.auto.tfvars -auto-approve
           

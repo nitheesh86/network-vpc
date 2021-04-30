@@ -3,10 +3,10 @@ name: "Terraform-Develop"
 on:
   pull_request:
     branches:
-      - develop
+      - dev
   push:
     branches:
-      - develop
+      - dev
 
 jobs:
   terraform:
@@ -30,7 +30,7 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="dev"
           terraform init -input=false
           terraform workspace show
 
@@ -38,7 +38,7 @@ jobs:
         id: plan
         if: github.event_name == 'pull_request'
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="dev"
           terraform plan  -no-color
         continue-on-error: true
 
@@ -74,7 +74,7 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+        if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="development"
           terraform apply -auto-approve  
