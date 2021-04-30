@@ -24,6 +24,7 @@ jobs:
 
       - name: Terraform Format
         id: fmt
+        if: github.event_name == 'pull_request'
         run: terraform fmt -check
 
       - name: Terraform Init
