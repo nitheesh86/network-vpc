@@ -76,7 +76,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="dev"
           terraform apply -auto-approve  
 
         
