@@ -21,8 +21,15 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           # terraform_version: 0.13.0:
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }
 
+      - name: Terraform Init
+        id: init
+        run: |
+          export TF_WORKSPACE="dev"
+          terraform init -input=false
+          terraform workspace show
+      
       - name: Terraform Format
         if: github.event_name == 'pull_request'
         id: fmt
@@ -31,14 +38,7 @@ jobs:
       - name: Terraform Validate
         if: github.event_name == 'pull_request'
         id: validate
-        run: terraform validate
-
-      - name: Terraform Init
-        id: init
-        run: |
-          export TF_WORKSPACE="dev"
-          terraform init -input=false
-          terraform workspace show
+        run: terraform validate    
 
       - name: Terraform Plan
         id: plan
