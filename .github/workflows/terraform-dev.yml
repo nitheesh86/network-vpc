@@ -30,7 +30,7 @@ jobs:
       
       - name: Terraform Validate
         if: github.event_name == 'pull_request'
-        id: fmt
+        id: validate
         run: terraform validate
 
       - name: Terraform Init
