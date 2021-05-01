@@ -11,7 +11,7 @@ provider "aws" {
   region = "ap-south-1"
 }
 
-module "network" {
+module "vpc" {
   source  = "app.terraform.io/nitheeshp/vpc/aws"
   version = "0.0.1"
 
