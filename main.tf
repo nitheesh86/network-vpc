@@ -13,8 +13,8 @@ provider "aws" {
 
 
 module "vpc" {
-  source = "github.com/terraform-aws-modules/terraform-aws-vpc"
-
+  source = "github.com/nitheesh86/terraform-modules/tree/master/modules/vpc"
+  
   name = var.name
   cidr = "10.0.0.0/16"
 
