@@ -30,11 +30,6 @@ jobs:
           terraform init -input=false
           terraform workspace show
       
-      - name: Terraform Format
-        if: github.event_name == 'pull_request'
-        id: fmt
-        run: terraform fmt -check
-      
       - name: Terraform Validate
         if: github.event_name == 'pull_request'
         id: validate
