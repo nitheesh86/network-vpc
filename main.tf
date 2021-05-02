@@ -13,9 +13,8 @@ provider "aws" {
 
 
 module "vpc" {
-  source  = "app.terraform.io/nitheeshp/vpc/aws"
-  version = "0.0.1"
-
+  source = "github.com/nitheesh86/terraform-modules/modules/vpc"
+ 
   name = var.name
   cidr = "10.0.0.0/16"
 

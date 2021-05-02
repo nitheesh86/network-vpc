@@ -1,2 +1,2 @@
 name = "dev-vpc"
-env = "devnew"
+env = "dev"
