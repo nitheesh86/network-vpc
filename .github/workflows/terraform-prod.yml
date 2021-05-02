@@ -24,7 +24,13 @@ jobs:
 
       - name: Terraform Format
         id: fmt
+        if: github.event_name == 'pull_request'
         run: terraform fmt -check
+
+      - name: Terraform Validate
+        if: github.event_name == 'pull_request'
+        id: validate
+        run: terraform validate  
 
       - name: Terraform Init
         id: init
@@ -38,7 +44,7 @@ jobs:
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="prod"
-          terraform plan -var-file=environments/prod.auto.tfvars -no-color
+          terraform plan -input=false
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -76,5 +82,5 @@ jobs:
         if: github.ref == 'refs/heads/prod' && github.event_name == 'push'
         run: |
           export TF_WORKSPACE="prod"
-          terraform apply -var-file=environments/prod.auto.tfvars -auto-approve
+          terraform apply -auto-approve
           

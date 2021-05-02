@@ -8,6 +8,7 @@ on:
     branches:
       - dev
 
+
 jobs:
   terraform:
     name: "Deploy-Development-Environment"
@@ -22,24 +23,29 @@ jobs:
           # terraform_version: 0.13.0:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Terraform Format
-        if: github.event_name == 'pull_request' && github.event.action == 'opened'
-        id: fmt
-        run: terraform fmt -check
-
       - name: Terraform Init
         id: init
         run: |
           export TF_WORKSPACE="dev"
           terraform init -input=false
           terraform workspace show
+      
+      - name: Terraform Format
+        if: github.event_name == 'pull_request'
+        id: fmt
+        run: terraform fmt -check
+      
+      - name: Terraform Validate
+        if: github.event_name == 'pull_request'
+        id: validate
+        run: terraform validate    
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
         run: |
           export TF_WORKSPACE="dev"
-          terraform plan  -no-color
+          terraform plan -input=false
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
@@ -76,7 +82,5 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
         run: |
-          export TF_WORKSPACE="development"
+          export TF_WORKSPACE="dev"
           terraform apply -auto-approve  
-
-        
