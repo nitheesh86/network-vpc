@@ -3,7 +3,7 @@ terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
     organization = "nitheeshp"
-    workspaces { prefix = "vpc-" }
+    workspaces { prefix = "citi-" }
   }
 }
 
@@ -30,3 +30,4 @@ module "vpc" {
     Environment = var.env
   }
 }
+
